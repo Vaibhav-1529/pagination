@@ -1,13 +1,15 @@
 let data;
 let curpageno=1;
 let size;
-async function getdata(){
-    let result=await fetch("https://newsapi.org/v2/everything?q=tesla&from=2025-02-19&sortBy=publishedAt&apiKey=8ea85bfbe82349b9a73206ce27fde029")
-    let content=await result.json();
-    data=content.articles;
-    size=data.length;
+let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+let apiUrl = "https://newsapi.org/v2/everything?q=tesla&from=2025-02-19&sortBy=publishedAt&apiKey=8ea85bfbe82349b9a73206ce27fde029";
+async function getdata() {
+    let result = await fetch(proxyUrl + apiUrl);
+    let content = await result.json();
+    data = content.articles;
+    size = data.length;
     loadnews(curpageno);
-}   
+}
 getdata();
 function emptyparent(){
     container.innerHTML=``;
